@@ -9,7 +9,7 @@ This code generates a morphing effect between two faces.
 4. [Alpha blending](https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending) on the paired triangles with a given transparency.	
 
 Steps 3 and 4 are iterated for different values of alpha to generate a bunch of morphing frames.		
-After that the, frames are converted into a video file.	
+After that, frames are converted into a video file.	
 
 ## Attribution
 
@@ -24,8 +24,6 @@ Run the proper script or install each therein included library for your OS `maco
 ```bash
 $ ./install/install_morphing_dependencies_<myOS>.sh`
 ```
-
-Further installation details for *OpenCV* and *Dlib* in [here](https://www.pyimagesearch.com/2018/01/22/install-dlib-easy-complete-guide/), [here](https://www.learnopencv.com/install-opencv-3-and-dlib-on-windows-python-only/) and [here](https://www.learnopencv.com/install-dlib-on-ubuntu).
 
 ## How to morph between 2 images
 
@@ -42,19 +40,8 @@ $./run_morphing_with_images.sh <image1> <image2> <framerate> <duration_milis>
 ### Example
 
 ```bash
-$./run_morphing_with_images.sh ./example/van_gogh.png ./example/paul_goughin.png 30 2000
+$./morphing.sh ./example/van_gogh.png ./example/paul_goughin.png 30 2000
 ```
-
-## How to morph between 2 video files
-
-```bash
-$./run_morphing_with_videos.sh <video1> <video2> <framerate>
-```
-`video1`: initial video clip.	
-`video2`: final video clip.	
-`framerate`: frame-rate in fps.		
-
-The shortest video file will determine the duration of the final morphing clip.
 
 ## How to create caricatures
 
@@ -71,7 +58,7 @@ for (f, a) in enumerate(np.linspace(0,100,n_frames)) :
 Order 2 frames if you just like to have the cartoon frame:	
 
 ```bash
-$./run_morphing_with_images.sh <image1> <image2> 2 1000
+$./morphing.sh <image1> <image2> 2 1000
 ```
 
 ## How to create a loop-back effect
@@ -85,24 +72,13 @@ for (f, a) in enumerate(np.linspace(0,100,n_frames)) :
     if alpha > 1 :  alpha = 2 - alpha    
 ```
 
-## How to save the Delaunay triangles
-
-![](./example/van_gogh_delaunay.jpg)
-![](./example/van_gogh_voronoi.jpg)
-
-Run the script with the desired image as input.		
-Delaunay and Voronoi segmentations are saved next to the input image.		
-Unlike the morphing effect, no corners are used here, only facial landmarks.	
-
-```bash
-$ ./python delaunay.py -i <image>
-```
-
 ## Limitations
 
 Although *Dlib* is quite robust in most cases, it has its own limitations for detecting facial landmarks.	
 In case that the nose and eyes are not enough visible, face detection may fail.
 It also will fail on detecting non-real faces for instance cartoons, even if they have eyes, nose and mouth.
 
----
-	Rafael Redondo, Dec 2018.
+## References
+
+- [Face Morph Using OpenCV — C++ / Python](https://www.learnopencv.com/face-morph-using-opencv-cpp-python/)
+    - [Source code](https://github.com/spmallick/learnopencv/tree/master)
