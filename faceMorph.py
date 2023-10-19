@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import argparse
 import numpy as np
 import cv2
@@ -72,7 +71,7 @@ def morphTriangle(img1, img2, img, t1, t2, t, alpha) :
     img[r[1]:r[1]+r[3], r[0]:r[0]+r[2]] = img[r[1]:r[1]+r[3], r[0]:r[0]+r[2]] * ( 1 - mask ) + imgRect * mask
 
 # Gets delaunay 2D segmentation and return a list with the the triangles' indexes
-def get_delaunay_indexes(image, points) :
+def build_delaunay(image, points) :
 
     rect = (0, 0, image.shape[1], image.shape[0])
     subdiv = cv2.Subdiv2D(rect);
@@ -160,7 +159,7 @@ if __name__ == '__main__' :
     points2.append( (w2   , h - 1) )
 
     # Delaunay points
-    delaunay = get_delaunay_indexes(img1,points1)
+    delaunay = build_delaunay(img1, points1)
 
     # Alpha values
     alpha_values = []

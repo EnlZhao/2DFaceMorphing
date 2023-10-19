@@ -8,6 +8,7 @@ import os
 
 # Check if a point is inside a rectangle
 def rect_contains(rect, point) :
+
     if point[0] < rect[0] :
         return False
     elif point[1] < rect[1] :
@@ -143,8 +144,8 @@ if __name__ == '__main__':
     draw_voronoi(img_voronoi,subdiv)
 
     # Show results
-    #cv2.imshow(win_delaunay,img)
-    #cv2.imshow(win_voronoi,img_voronoi)
+    cv2.imshow(win_delaunay,img)
+    cv2.imshow(win_voronoi,img_voronoi)
     #cv2.waitKey(0)
 
     # Save results
