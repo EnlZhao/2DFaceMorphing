@@ -18,7 +18,7 @@ if __name__ == "__main__":
     python align_images.py /raw_images /aligned_images
     """
     parser = argparse.ArgumentParser(description='Align faces from input images', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('raw_dir', help='Directory with raw images for face alignment')
+    parser.add_argument('origin_dir', help='Directory with images for face alignment')
     parser.add_argument('aligned_dir', help='Directory for storing aligned images')
     parser.add_argument('--output_size', default=1024, help='The dimension of images for input to the model', type=int)
     parser.add_argument('--x_scale', default=1, help='Scaling factor for x dimension', type=float)
@@ -28,14 +28,14 @@ if __name__ == "__main__":
 
     args, other_args = parser.parse_known_args()
 
-    RAW_IMAGES_DIR = args.raw_dir
-    ALIGNED_IMAGES_DIR = args.aligned_dir
+    _origin_img_dir = args.origin_dir
+    _aligned_img_dir = args.aligned_dir
 
     landmarks_detector = LandmarksDetector()
-    for img_name in os.listdir(RAW_IMAGES_DIR):
+    for img_name in os.listdir(_origin_img_dir):
         print('Aligning %s ...' % img_name)
         try:
-            raw_img_path = os.path.join(RAW_IMAGES_DIR, img_name)
+            raw_img_path = os.path.join(_origin_img_dir, img_name)
             fn = face_img_name = '%s_%02d.png' % (os.path.splitext(img_name)[0], 1)
             if os.path.isfile(fn):
                 continue
@@ -44,7 +44,7 @@ if __name__ == "__main__":
                 try:
                     print('Starting face alignment...')
                     face_img_name = '%s_%02d.png' % (os.path.splitext(img_name)[0], i)
-                    aligned_face_path = os.path.join(ALIGNED_IMAGES_DIR, face_img_name)
+                    aligned_face_path = os.path.join(_aligned_img_dir, face_img_name)
                     image_align(raw_img_path, aligned_face_path, face_landmarks, output_size=args.output_size, x_scale=args.x_scale, y_scale=args.y_scale, em_scale=args.em_scale, alpha=args.use_alpha)
                     print('Wrote result %s' % aligned_face_path)
                 except:

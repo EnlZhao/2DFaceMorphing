@@ -1,9 +1,8 @@
 #!/bin/bash
-# Rafael Redondo - Nov. 2018
 
 usage()
 {
-	echo "Usage: $ ./run_morphing_with_images <image1> <image2> <fps> <duration_milis>"
+	echo "Usage: $ ./build.sh <image1> <image2> <fps> <duration_milis>"
 }
 
 if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ]; then

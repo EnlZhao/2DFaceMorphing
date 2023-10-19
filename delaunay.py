@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env/python
 
 import cv2
 import numpy as np
@@ -133,9 +133,12 @@ if __name__ == '__main__':
     triangleList = subdiv.getTriangleList();
 
     for t in triangleList :
-        if rect_contains(rect, (t[0], t[1])): f.write(str(int(t[0])) + ' ' + str(int(t[1])) + '\n')
-        if rect_contains(rect, (t[2], t[3])): f.write(str(int(t[2])) + ' ' + str(int(t[3])) + '\n')
-        if rect_contains(rect, (t[4], t[5])): f.write(str(int(t[4])) + ' ' + str(int(t[5])) + '\n')
+        if rect_contains(rect, (t[0], t[1])): 
+            f.write(str(int(t[0])).encode("utf-8") + b' ' + str(int(t[1])).encode("utf-8") + b'\n')
+        if rect_contains(rect, (t[2], t[3])): 
+            f.write(str(int(t[2])).encode("utf-8") + b' ' + str(int(t[3])).encode("utf-8") + b'\n')
+        if rect_contains(rect, (t[4], t[5])): 
+            f.write(str(int(t[4])).encode("utf-8") + b' ' + str(int(t[5])).encode("utf-8") + b'\n')
 
     # Allocate space for voronoi Diagram
     img_voronoi = np.zeros(img.shape, dtype = img.dtype)
