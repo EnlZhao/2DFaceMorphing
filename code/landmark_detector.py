@@ -1,11 +1,7 @@
 from imutils import face_utils
-import numpy as np
 import argparse
-import imutils
 import dlib
 import cv2
-from skimage import io
-from skimage.transform import resize
 import os
 
 # construct the argument parser and parse the arguments
@@ -24,7 +20,6 @@ predictor = dlib.shape_predictor("code/shape_predictor_68_face_landmarks.dat")
 
 # load the input image, resize it, and convert it to grayscale
 image = cv2.imread(filename)
-# image = imutils.resize(image, width=250)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # detect faces in the grayscale image
@@ -64,13 +59,13 @@ for (i, rect) in enumerate(rects):
         f.write(str(x).encode("utf-8") + b' ' + str(y).encode("utf-8") + b'\n')
     
     f.close()
-    print('\033[1;32mLandmarks exported to ' + landmarks_file)    
+    print('\033[0;32mLandmarks exported to ' + landmarks_file)    
 
 
 cv2.imwrite(out_dir + '/' + name + '_landmarks.jpg', image)
 
 if len(rects) == 0 : 
-    print("\033[1;31mWarning! no faces have been detected\033[0m")
+    print("\033[0;31mWarning! no faces have been detected\033[0m")
 else : 
-    print('\033[1;42mDetected Done!\033[0m')
+    print('\033[0;42mDetected Done!\033[0m')
 

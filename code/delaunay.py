@@ -152,8 +152,8 @@ if __name__ == '__main__':
     # Save results
     cv2.imwrite(out_dir + '/' + name + '_delaunay.jpg', img)
     cv2.imwrite(out_dir + '/' + name + '_voronoi.jpg', img_voronoi)
-    print('\033[1;32mresults exported to ' + points_filename)
-    print('\033[1;42mBuild Delaunay Triangles Done!\033[0m')
+    print('\033[0;32mresults exported to ' + points_filename)
+    print('\033[0;42mBuild Delaunay Triangles Done!\033[0m')
 
 
 

@@ -14,4 +14,4 @@ class LandmarksDetector:
                 face_landmarks = [(item.x, item.y) for item in self.shape_predictor(img, detection).parts()]
                 yield face_landmarks
             except:
-                print("Exception in get_landmarks()!")
+                print("\033[1;41mException in get_landmarks()!\033[0m")

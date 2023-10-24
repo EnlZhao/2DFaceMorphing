@@ -1,7 +1,6 @@
 import argparse
 import numpy as np
 import cv2
-import sys
 import os
 
 
@@ -195,5 +194,5 @@ if __name__ == '__main__' :
 
         cv2.imwrite( out_dir1 + '/morph-' + name1 + '-' + name2 + '-' + index + '.png', np.uint8(imgMorph) )
 
-    print('\033[1;32mMorphing results exported in ' + out_dir1)
-    print('\033[1;42mFace morphing Done!\033[0m')
+    print('\033[0;32mMorphing results exported in ' + out_dir1)
+    print('\033[0;42mFace morphing Done!\033[0m')
