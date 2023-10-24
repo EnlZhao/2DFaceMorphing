@@ -1,13 +1,9 @@
 import dlib
 
 class LandmarksDetector:
-    # def __init__(self, predictor_model_path='code/utils/shape_predictor_68_face_landmarks.dat'):
-    def __init__(self, predictor_model_path='shape_predictor_68_face_landmarks.dat'):
-        """
-        :param predictor_model_path: path to shape_predictor_68_face_landmarks.dat file
-        """
+    def __init__(self):
         self.detector = dlib.get_frontal_face_detector() # cnn_face_detection_model_v1 also can be used
-        self.shape_predictor = dlib.shape_predictor(predictor_model_path)
+        self.shape_predictor = dlib.shape_predictor("code/shape_predictor_68_face_landmarks.dat")
 
     def get_landmarks(self, image):
         img = dlib.load_rgb_image(image)

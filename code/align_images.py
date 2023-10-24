@@ -2,7 +2,7 @@ import os
 import bz2
 import argparse
 from face_alignment import image_align
-from landmarks_detector import LandmarksDetector
+from align_landmarks_detector import LandmarksDetector
 
 def unpack_bz2(src_path):
     data = bz2.BZ2File(src_path).read()
@@ -33,21 +33,21 @@ if __name__ == "__main__":
 
     landmarks_detector = LandmarksDetector()
     for img_name in os.listdir(_origin_img_dir):
-        print('Aligning %s ...' % img_name)
+        print('\033[1;32mAligning %s ...' % img_name)
         try:
             raw_img_path = os.path.join(_origin_img_dir, img_name)
             fn = face_img_name = '%s_%02d.png' % (os.path.splitext(img_name)[0], 1)
             if os.path.isfile(fn):
                 continue
-            print('Getting landmarks...')
+            print('\033[0mGetting landmarks...')
             for i, face_landmarks in enumerate(landmarks_detector.get_landmarks(raw_img_path), start=1):
                 try:
                     print('Starting face alignment...')
                     face_img_name = '%s_%02d.png' % (os.path.splitext(img_name)[0], i)
                     aligned_face_path = os.path.join(_aligned_img_dir, face_img_name)
                     image_align(raw_img_path, aligned_face_path, face_landmarks, output_size=args.output_size, x_scale=args.x_scale, y_scale=args.y_scale, em_scale=args.em_scale, alpha=args.use_alpha)
-                    print('Wrote result %s' % aligned_face_path)
+                    print(f'\033[1;32mWrote result {aligned_face_path}\n\033[0m')
                 except:
-                    print("Exception in face alignment!")
+                    print("\033[1;41mException in face alignment!\033[0m")
         except:
-            print("Exception in landmark detection!")
+            print("\033[1;41mException in landmark detection!\033[0m")
