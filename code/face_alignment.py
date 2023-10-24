@@ -1,10 +1,11 @@
 import numpy as np
 import scipy.ndimage
 import os
-import PIL.Image
+from PIL import Image
 
 
-def image_align(src_file, dst_file, face_landmarks, output_size=1024, transform_size=4096, enable_padding=True, x_scale=1, y_scale=1, em_scale=0.1, alpha=False):
+def image_align(src_file, dst_file, face_landmarks, output_size=1024, transform_size=4096, 
+                enable_padding=True, x_scale=1, y_scale=1, em_scale=0.1, alpha=False):
         # Align function from FFHQ dataset pre-processing step
         # https://github.com/NVlabs/ffhq-dataset/blob/master/download_ffhq.py
 
@@ -43,13 +44,13 @@ def image_align(src_file, dst_file, face_landmarks, output_size=1024, transform_
         if not os.path.isfile(src_file):
             print('\nCannot find source image. Please run "--wilds" before "--align".')
             return
-        img = PIL.Image.open(src_file).convert('RGBA').convert('RGB')
+        img = Image.open(src_file).convert('RGBA').convert('RGB')
 
         # Shrink.
         shrink = int(np.floor(qsize / output_size * 0.5))
         if shrink > 1:
             rsize = (int(np.rint(float(img.size[0]) / shrink)), int(np.rint(float(img.size[1]) / shrink)))
-            img = img.resize(rsize, PIL.Image.ANTIALIAS)
+            img = img.resize(rsize, Image.ANTIALIAS)
             quad /= shrink
             qsize /= shrink
 
@@ -78,15 +79,15 @@ def image_align(src_file, dst_file, face_landmarks, output_size=1024, transform_
                 mask = 1-np.clip(3.0 * mask, 0.0, 1.0)
                 mask = np.uint8(np.clip(np.rint(mask*255), 0, 255))
                 img = np.concatenate((img, mask), axis=2)
-                img = PIL.Image.fromarray(img, 'RGBA')
+                img = Image.fromarray(img, 'RGBA')
             else:
-                img = PIL.Image.fromarray(img, 'RGB')
+                img = Image.fromarray(img, 'RGB')
             quad += pad[:2]
 
         # Transform.
-        img = img.transform((transform_size, transform_size), PIL.Image.QUAD, (quad + 0.5).flatten(), PIL.Image.BILINEAR)
+        img = img.transform((transform_size, transform_size), Image.QUAD, (quad + 0.5).flatten(), Image.BILINEAR)
         if output_size < transform_size:
-            img = img.resize((output_size, output_size), PIL.Image.ANTIALIAS)
+            img = img.resize((output_size, output_size), Image.ANTIALIAS)
 
         # Save aligned image.
         img.save(dst_file, 'PNG')

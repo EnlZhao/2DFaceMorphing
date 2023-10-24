@@ -1,4 +1,3 @@
-# import the necessary packages
 from imutils import face_utils
 import numpy as np
 import argparse
@@ -11,7 +10,7 @@ import os
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True, help="path to input image")
+ap.add_argument("--image", required=True, help="path to input image")
 args = vars(ap.parse_args())
 
 filename = args["image"]
@@ -21,7 +20,7 @@ print('Searching facial landmarks for image ' + filename)
 # initialize dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
+predictor = dlib.shape_predictor("code/shape_predictor_68_face_landmarks.dat")
 
 # load the input image, resize it, and convert it to grayscale
 image = cv2.imread(filename)
@@ -65,15 +64,13 @@ for (i, rect) in enumerate(rects):
         f.write(str(x).encode("utf-8") + b' ' + str(y).encode("utf-8") + b'\n')
     
     f.close()
-    print('Landmarks exported to ' + landmarks_file)    
+    print('\033[1;32mLandmarks exported to ' + landmarks_file)    
 
 
-# Show the output image with the face detections + facial landmarks
-# cv2.imshow("Facial landmarks", image)
-# print("Select the opened window and press a key to finish")
-# cv2.waitKey(0)
 cv2.imwrite(out_dir + '/' + name + '_landmarks.jpg', image)
 
-if len(rects) == 0 : print("Warning! no faces have been detected")
-else : print('Done!')
+if len(rects) == 0 : 
+    print("\033[1;31mWarning! no faces have been detected\033[0m")
+else : 
+    print('\033[1;42mDetected Done!\033[0m')
 
