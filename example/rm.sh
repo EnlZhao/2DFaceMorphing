@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm *.mp4 morph-harry-hermain* *.txt *_landmarks.jpg
+rm *.mp4 morph-harry-hermione* *.txt *_landmarks.jpg
