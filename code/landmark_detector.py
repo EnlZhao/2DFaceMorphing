@@ -67,5 +67,5 @@ cv2.imwrite(out_dir + '/' + name + '_landmarks.jpg', image)
 if len(rects) == 0 : 
     print("\033[0;31mWarning! no faces have been detected\033[0m")
 else : 
-    print('\033[0;42mDetected Done!\033[0m')
+    print('\033[0;37;42mDetected Done!\033[0m')
 
