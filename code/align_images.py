@@ -22,9 +22,10 @@ if __name__ == "__main__":
     _aligned_img_dir = os.path.split(image)[0]
     img_name = os.path.split(image)[1]
 
-    points_filename = "example/harry.txt"
+    # points_filename = "example/harry.txt"
+    pointe_filecname = os.path.splitext(image)[0] + ".txt"
     landmarks_detector = []
-    with open(points_filename) as file :
+    with open(pointe_filecname) as file :
         for line in file :
             x, y = line.split()
             landmarks_detector.append((int(x), int(y)))

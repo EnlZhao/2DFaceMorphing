@@ -46,11 +46,6 @@ for (i, rect) in enumerate(rects):
     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
     # loop over the (x, y)-coordinates for the facial landmarks
-    # and draw them on the image
-    for (x, y) in shape:
-        cv2.circle(image, (x, y), 1, (0, 0, 255), -1)
-
-    # loop over the (x, y)-coordinates for the facial landmarks
     # and write them on a file
     landmarks_file = out_dir + '/' + name + '.txt'      # overwrites landmarks for images with multiple faces
     f = open(landmarks_file, 'wb')
@@ -60,9 +55,6 @@ for (i, rect) in enumerate(rects):
     
     f.close()
     print('\033[0;32mLandmarks exported to ' + landmarks_file)    
-
-
-cv2.imwrite(out_dir + '/' + name + '_landmarks.jpg', image)
 
 if len(rects) == 0 : 
     print("\033[0;31mWarning! no faces have been detected\033[0m")

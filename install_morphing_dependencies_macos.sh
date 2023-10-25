@@ -17,8 +17,9 @@ brew install boost-python3
 
 pip install numpy
 pip install scipy
-pip install scikit-image
-pip install matplotlib
+pip install pillow
+# pip install scikit-image
+# pip install matplotlib
 pip install imutils
 pip install opencv-python
 pip install dlib

@@ -44,7 +44,7 @@ if [[ $align -eq 1 ]]; then
     echo "${bold}Aligning images${normal}"
     python code/align_images.py --image $img1
     python code/align_images.py --image $img2
-    rm $path/$filename1.txt $path/$filename2.txt
+    # rm $path/$filename1.txt $path/$filename2.txt
     img1=$path/aligned-$filename1.png
     img2=$path/aligned-$filename2.png
     filename1="aligned-$filename1"
