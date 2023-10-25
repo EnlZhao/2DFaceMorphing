@@ -26,7 +26,7 @@ $ ./install_morphing_dependencies_macos.sh`
 ```
 
 > You can also run the project on Ubuntu, but you will need to install the dependencies manually.
-> If you are using Ubuntu, you can follow the instructions below.(It might not work totally, please refer to the [blog](# https://www.learnopencv.com/install-dlib-on-ubuntu) for more details.)
+> If you are using Ubuntu, you can follow the instructions below.(It might not work totally, please refer to the [blog](https://www.learnopencv.com/install-dlib-on-ubuntu) for more details.)
 
 ```bash
 sudo apt-get install build-essential cmake pkg-config
@@ -44,13 +44,13 @@ pip install dlib
 You can run the script `morphing.sh` to generate a video file with the morphing effect between two images.
 
 ```bash
-$./run_morphing_with_images.sh <image1> <image2> <framerate> <duration_milis>
+$./run_morphing_with_images.sh <image1> <image2> <framerate> <duration_milis> [align]
 ```
-
 - `image1`: initial image.	
 - `image2`: final image.	
 - `framerate`: frame-rate in fps.	
 - `duration`: morphing duration in miliseconds.
+- `align` [option]: if set 1, the images will be aligned before morphing. Default is 0.
 
 > More details about parameters can be found in the script `morphing.sh` or source code.
 

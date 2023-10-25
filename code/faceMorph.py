@@ -62,9 +62,7 @@ def morphTriangle(img1, img2, img, t1, t2, t, alpha) :
 
 
     # Offset points by left top corner of the respective rectangles
-    t1Rect = []
-    t2Rect = []
-    tRect = []
+    t1Rect, t2Rect, tRect = [], [], []
 
     for i in range(0, 3):
         tRect.append(((t[i][0] - r[0]),(t[i][1] - r[1])))
