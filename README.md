@@ -56,8 +56,17 @@ $./run_morphing_with_images.sh <image1> <image2> <framerate> <duration_milis> [a
 
 ### Example
 
+- Unaligned version:
+
 ```bash
 $./morphing.sh example/harry.jpg example/hermione.jpg 40 3000
+```
+- Aligned version:
+
+![](example/harry-hermione-aligned.gif)
+
+```bash
+$./morphing.sh example/harry.jpg example/hermione.jpg 40 3000 1
 ```
 
 ## Limitations
