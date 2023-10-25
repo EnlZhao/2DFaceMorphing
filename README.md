@@ -26,7 +26,7 @@ $ ./install_morphing_dependencies_macos.sh`
 ```
 
 > You can also run the project on Ubuntu, but you will need to install the dependencies manually.
-> If you are using Ubuntu, you can follow the instructions below.(It might not work totally, please refer to the [blog](# https://www.learnopencv.com/install-dlib-on-ubuntu) for more details.)
+> If you are using Ubuntu, you can follow the instructions below.(It might not work totally, please refer to the [blog](https://www.learnopencv.com/install-dlib-on-ubuntu) for more details.)
 
 ```bash
 sudo apt-get install build-essential cmake pkg-config
