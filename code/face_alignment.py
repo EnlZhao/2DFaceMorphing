@@ -42,7 +42,7 @@ def image_align(src_file, dst_file, face_landmarks, output_size=1024, transform_
 
         # Load in-the-wild image.
         if not os.path.isfile(src_file):
-            print('\nCannot find source image. Please run "--wilds" before "--align".')
+            print('\n\033[1;31mCannot find source image. Please run "--wilds" before "--align".\033[0m')
             return
         img = Image.open(src_file).convert('RGBA').convert('RGB')
 
