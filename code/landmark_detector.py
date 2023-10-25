@@ -1,8 +1,8 @@
-from imutils import face_utils
 import argparse
 import dlib
 import cv2
 import os
+from imutils import face_utils
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
