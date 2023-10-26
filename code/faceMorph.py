@@ -9,8 +9,8 @@ def build_delaunay(image, points) :
     """
     rect = (0, 0, image.shape[1], image.shape[0])
     subdiv = cv2.Subdiv2D(rect)
-    for p in points :
-        subdiv.insert( p )
+    for point in points :
+        subdiv.insert(point)
 
     triangleList = subdiv.getTriangleList()
     triangles = []

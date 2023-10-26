@@ -12,7 +12,7 @@ args = vars(ap.parse_args())
 filename = args["image"]
 out_dir, basename = os.path.split(filename)
 name, extension = os.path.splitext(basename)
-print('Searching facial landmarks for image ' + filename)
+print(f'Searching facial landmarks for image {filename}')
 # initialize dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
 detector = dlib.get_frontal_face_detector()
