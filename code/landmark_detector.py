@@ -43,7 +43,7 @@ for (i, rect) in enumerate(rects):
 
     # show the face number
     cv2.putText(image, "Face #{}".format(i + 1), (x - 10, y - 10),
-    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
     # loop over the (x, y)-coordinates for the facial landmarks
     # and write them on a file
@@ -60,4 +60,5 @@ if len(rects) == 0 :
     print("\033[0;31mWarning! no faces have been detected\033[0m")
 else : 
     print('\033[0;37;42mDetected Done!\033[0m')
+
 
