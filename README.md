@@ -62,9 +62,9 @@ $ ./morphing.sh example/harry.jpg example/hermione.jpg 40 3000
 $ ./morphing.sh example/harry.jpg example/hermione.jpg 40 3000 1
 ```
 
-｜ unaligned ｜ aligned ｜
-｜:--------:｜:--------:｜
-｜ ![](example/harry-hermione.gif) ｜ ![](example/harry-hermione-aligned.gif) ｜
+| unaligned | aligned |
+|:--------:|:--------:|
+| ![](example/harry-hermione.gif) | ![](example/harry-hermione-aligned.gif) |
 
 ## More info
 
