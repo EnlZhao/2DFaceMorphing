@@ -58,11 +58,13 @@ $ ./morphing.sh example/harry.jpg example/hermione.jpg 40 3000
 ```
 - Aligned version:
 
-![](example/harry-hermione-aligned.gif)
-
 ```bash
 $ ./morphing.sh example/harry.jpg example/hermione.jpg 40 3000 1
 ```
+
+｜ unaligned ｜ aligned ｜
+｜:--------:｜:--------:｜
+｜ ![](example/harry-hermione.gif) ｜ ![](example/harry-hermione-aligned.gif) ｜
 
 ## More info
 
@@ -75,5 +77,4 @@ $ python code/draw_delaunay.py --image <img_path> # generate the Delaunay and Vo
 
 ## References
 
-- [Face Morph Using OpenCV — C++ / Python](https://www.learnopencv.com/face-morph-using-opencv-cpp-python/)
-- This project is a modification of the code originally posted in this [blog post](https://www.learnopencv.com/face-morph-using-opencv-cpp-python/). And the neck, ear, shoulder points have been omitted to make it completely automatic.
+[Face Morph Using OpenCV — C++ / Python](https://www.learnopencv.com/face-morph-using-opencv-cpp-python/)
