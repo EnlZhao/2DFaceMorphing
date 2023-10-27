@@ -44,7 +44,7 @@ $ ./run_morphing_with_images.sh <image1> <image2> <framerate> <duration_milis> [
 - `image2`: final image.	
 - `framerate`: frame-rate in fps.	
 - `duration`: morphing duration in miliseconds.
-- `align` [option]: if set 1, the images will be aligned before morphing. Default is 0.
+- `align` [optional]: if set 1, the images will be aligned before morphing. Default is 0.
 
 > I suppose you to open face alignment and cropping option for images with multiple faces to make it more robust and fluent.
 > More details about parameters can be found in the script `morphing.sh` or source code.
@@ -78,3 +78,4 @@ $ python code/draw_delaunay.py --image <img_path> # generate the Delaunay and Vo
 ## References
 
 [Face Morph Using OpenCV — C++ / Python](https://www.learnopencv.com/face-morph-using-opencv-cpp-python/)
+
