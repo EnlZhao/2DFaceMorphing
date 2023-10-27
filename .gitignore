@@ -2,4 +2,4 @@
 **/__pycache__/
 example/*.sh
 example/*.txt
-**/*.pdf
+report.pdf
