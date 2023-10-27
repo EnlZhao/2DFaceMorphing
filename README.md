@@ -44,7 +44,7 @@ $ ./run_morphing_with_images.sh <image1> <image2> <framerate> <duration_milis> [
 - `image2`: final image.	
 - `framerate`: frame-rate in fps.	
 - `duration`: morphing duration in miliseconds.
-- `align` [option]: if set 1, the images will be aligned before morphing. Default is 0.
+- `align` [optional]: if set 1, the images will be aligned before morphing. Default is 0.
 
 > I suppose you to open face alignment and cropping option for images with multiple faces to make it more robust and fluent.
 > More details about parameters can be found in the script `morphing.sh` or source code.
@@ -71,10 +71,11 @@ $ ./morphing.sh example/harry.jpg example/hermione.jpg 40 3000 1
 You can check the Delaunay and Voronoi diagrams generated for the example images by running the code `draw_delaunay.py`.
 
 ```bash
-$ python code/landmark_detector.py --image <img_path> # generate the landmarks file
-$ python code/draw_delaunay.py --image <img_path> # generate the Delaunay and Voronoi diagrams
+$ python my_code/landmark_detector.py --image <img_path> # generate the landmarks file
+$ python my_code/draw_delaunay.py --image <img_path> # generate the Delaunay and Voronoi diagrams
 ```
 
 ## References
 
 [Face Morph Using OpenCV — C++ / Python](https://www.learnopencv.com/face-morph-using-opencv-cpp-python/)
+

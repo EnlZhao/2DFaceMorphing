@@ -42,11 +42,11 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 if [[ $align -eq 1 ]]; then
-    python code/landmark_detector.py --image $img1
-    python code/landmark_detector.py --image $img2
+    python my_code/landmark_detector.py --image $img1
+    python my_code/landmark_detector.py --image $img2
     echo "${bold}Aligning images${normal}"
-    python code/align_images.py --image $img1
-    python code/align_images.py --image $img2
+    python my_code/align_images.py --image $img1
+    python my_code/align_images.py --image $img2
     rm $path/$filename1.txt $path/$filename2.txt
     img1=$path/aligned-$filename1.png
     img2=$path/aligned-$filename2.png
@@ -57,11 +57,11 @@ else
 fi
 
 echo "${bold}Generating facial landmarks${normal}"
-python code/landmark_detector.py --image $img1
-python code/landmark_detector.py --image $img2
+python my_code/landmark_detector.py --image $img1
+python my_code/landmark_detector.py --image $img2
 
 echo "${bold}Drawing delaunay triangles of image1${normal}"
-python code/draw_delaunay.py --image $img1
+python my_code/draw_delaunay.py --image $img1
 if [ -e "$path/$filename1-delaunay.jpg" ] && [ -e "$path/$filename1-voronoi.jpg" ]; then
     echo -e "\033[1;32mCheckout delaunay triangles in $path/$filename1-delaunay.jpg and $filename1-voronoi.jpg\033[0m"
 else
@@ -69,7 +69,7 @@ else
 fi
 
 echo "${bold}Drawing delaunay triangles of image2${normal}"
-python code/draw_delaunay.py --image $img2
+python my_code/draw_delaunay.py --image $img2
 if [ -e "$path/$filename2-delaunay.jpg" ] && [ -e "$path/$filename2-voronoi.jpg" ]; then
     echo -e "\033[1;32mCheckout delaunay triangles in $path/$filename2-delaunay.jpg and $filename2-voronoi.jpg\033[0m"
 else
@@ -77,7 +77,7 @@ else
 fi
 
 echo "${bold}Creating morphing frames${normal}"
-python code/faceMorph.py --image1 $img1 --image2 $img2 --nframes $frames
+python my_code/faceMorph.py --image1 $img1 --image2 $img2 --nframes $frames
 
 echo "${bold}Generating video file${normal}"
 ffmpeg -framerate $fps -r $fps -start_number 0 -i $path/morph-$filename1-$filename2-%04d.png -b:v 10M -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" $path/$filename1-$filename2.mp4 -y

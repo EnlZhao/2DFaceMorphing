@@ -70,7 +70,7 @@ def applyAffineTransform(src, src_Triangle, dst_Triangle, size) :
     warpMat = cv2.getAffineTransform(np.float32(src_Triangle), np.float32(dst_Triangle))
     
     # Apply the Affine Transform just found to the src image
-    dst = cv2.warpAffine(src, warpMat, (size[0], size[1]), None, flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101 )
+    dst = cv2.warpAffine(src, warpMat, (size[0], size[1]), None, flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
 
     return dst
 
@@ -108,7 +108,7 @@ def morphTriangle(img1, img2, img, triangle1, triangle2, triangle, alpha) :
     imgRect = (1.0 - alpha) * warpImage1 + alpha * warpImage2
 
     # Copy triangular region of the rectangular patch to the output image
-    img[rectangle[1]:rectangle[1]+rectangle[3], rectangle[0]:rectangle[0]+rectangle[2]] = img[rectangle[1]:rectangle[1]+rectangle[3], rectangle[0]:rectangle[0]+rectangle[2]] * ( 1 - mask ) + imgRect * mask
+    img[rectangle[1]:rectangle[1]+rectangle[3], rectangle[0]:rectangle[0]+rectangle[2]] = (1 - mask) * img[rectangle[1]:rectangle[1]+rectangle[3], rectangle[0]:rectangle[0]+rectangle[2]] + mask * imgRect
 
 if __name__ == '__main__' :
     # Input arguments

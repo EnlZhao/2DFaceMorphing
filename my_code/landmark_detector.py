@@ -17,7 +17,7 @@ print(f'Searching facial landmarks for image {filename}')
 
 # initialize dlib's face detector (HOG-based) and then create the facial landmark predictor
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor("code/shape_predictor_68_face_landmarks.dat")
+predictor = dlib.shape_predictor("my_code/shape_predictor_68_face_landmarks.dat")
 
 # load the input image and convert it to grayscale
 image = cv2.imread(filename)
