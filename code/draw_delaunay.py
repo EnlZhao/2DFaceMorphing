@@ -5,7 +5,7 @@ import os
 import numpy as np
 from faceMorph import readPoints
 
-def rect_contains(rect, point) :
+def in_rectangle(rect, point) :
     """
     Check if a point is inside a rectangle
     """
@@ -19,14 +19,14 @@ def rect_contains(rect, point) :
         return False
     return True
 
-def draw_point(img, p, color ) :
+def draw_point(img, point, color ) :
     """
     Draws a point on an image.
     """
-    cv2.circle( img, p, 2, color, cv2.FILLED, cv2.LINE_AA, 0 )
+    cv2.circle(img, point, 2, color, cv2.FILLED, cv2.LINE_AA, 0)
 
 # Draw delaunay triangles
-def draw_delaunay(img, subdiv, delaunay_color ) :
+def draw_delaunay(img, subdiv, delaunay_color) :
 
     triangleList = subdiv.getTriangleList()
     size = img.shape
@@ -37,7 +37,7 @@ def draw_delaunay(img, subdiv, delaunay_color ) :
         pt2 = (int(t[2]), int(t[3]))
         pt3 = (int(t[4]), int(t[5]))
         
-        if rect_contains(r, pt1) and rect_contains(r, pt2) and rect_contains(r, pt3) :
+        if in_rectangle(r, pt1) and in_rectangle(r, pt2) and in_rectangle(r, pt3) :
             cv2.line(img, pt1, pt2, delaunay_color, 1, cv2.LINE_AA, 0)
             cv2.line(img, pt2, pt3, delaunay_color, 1, cv2.LINE_AA, 0)
             cv2.line(img, pt3, pt1, delaunay_color, 1, cv2.LINE_AA, 0)
@@ -59,10 +59,10 @@ def draw_voronoi(img, subdiv) :
         cv2.fillConvexPoly(img, ifacet, color, cv2.LINE_AA, 0)
         ifacets = np.array([ifacet])
         cv2.polylines(img, ifacets, True, (0, 0, 0), 1, cv2.LINE_AA, 0)
-        cv2.circle(img, (int(centers[i][0]), int(centers[i][1])), 3, (0, 0, 0), cv2.FILLED, cv2.LINE_AA, 0)
+        cv2.circle(img, (int(centers[i][0]), int(centers[i][1])), 3, 
+                   (0, 0, 0), cv2.FILLED, cv2.LINE_AA, 0)
 
 if __name__ == '__main__':
-
     # Input arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("--image", required=True, help="path to input image")
@@ -70,40 +70,28 @@ if __name__ == '__main__':
     filename = args["image"]
     out_dir, basename = os.path.split(filename)
     name, extension = os.path.splitext(basename)
-
-    # Turn on animation while drawing triangles
-    animate = False
     
     # Define colors for drawing.
     delaunay_color = (255,255,255)
     points_color = (0, 0, 255)
 
-    # Read in the image.
     img = cv2.imread(filename)
     
-    # Keep a copy around
-    img_orig = img.copy()
-    
     # Rectangle to be used with Subdiv2D
-    size = img.shape
-    rect = (0, 0, size[1], size[0])
-    
-    # Create an instance of Subdiv2D
+    rect = (0, 0, img.shape[1], img.shape[0])
     subdiv = cv2.Subdiv2D(rect)
     
-    # Read in the points from a text file
+    # Read in the points from a text file and insert them into a subdiv
     points = readPoints(out_dir + '/' + name + '.txt')
-
-    # Insert points into subdiv
     for p in points :
         subdiv.insert(p)
 
     # Draw delaunay triangles
-    draw_delaunay(img, subdiv, (255, 255, 255) )
+    draw_delaunay(img, subdiv, delaunay_color)
 
     # Draw points
     for p in points :
-        draw_point(img, p, (0,0,255))
+        draw_point(img, p, points_color)
 
     # Allocate space for voronoi Diagram
     img_voronoi = np.zeros(img.shape, dtype = img.dtype)
@@ -114,4 +102,5 @@ if __name__ == '__main__':
     # Save results
     cv2.imwrite(out_dir + '/' + name + '-delaunay.jpg', img)
     cv2.imwrite(out_dir + '/' + name + '-voronoi.jpg', img_voronoi)
+
     print('\033[0;32mDraw Delaunay Triangles Done!\033[0m')
