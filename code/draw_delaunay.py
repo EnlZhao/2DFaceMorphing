@@ -59,7 +59,8 @@ def draw_voronoi(img, subdiv) :
         cv2.fillConvexPoly(img, ifacet, color, cv2.LINE_AA, 0)
         ifacets = np.array([ifacet])
         cv2.polylines(img, ifacets, True, (0, 0, 0), 1, cv2.LINE_AA, 0)
-        cv2.circle(img, (int(centers[i][0]), int(centers[i][1])), 3, (0, 0, 0), cv2.FILLED, cv2.LINE_AA, 0)
+        cv2.circle(img, (int(centers[i][0]), int(centers[i][1])), 3, 
+                   (0, 0, 0), cv2.FILLED, cv2.LINE_AA, 0)
 
 if __name__ == '__main__':
     # Input arguments
@@ -101,5 +102,5 @@ if __name__ == '__main__':
     # Save results
     cv2.imwrite(out_dir + '/' + name + '-delaunay.jpg', img)
     cv2.imwrite(out_dir + '/' + name + '-voronoi.jpg', img_voronoi)
-    
+
     print('\033[0;32mDraw Delaunay Triangles Done!\033[0m')
