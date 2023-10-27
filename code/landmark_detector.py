@@ -70,9 +70,10 @@ f = open(landmarks_file, 'wb')
 for (x, y) in max_sharpness_shape:
     f.write(str(x).encode("utf-8") + b' ' + str(y).encode("utf-8") + b'\n')
 f.close()
-
 print(f'\033[0;32mLandmarks exported to {landmarks_file}\033[0m')    
+
 # show the output image with the face detections + facial landmarks
 cv2.imwrite(out_dir + '/' + name + '_landmarks.jpg', image)
+
 print(f'\033[0;32mImage with landmarks exported to {out_dir}/{name}_landmarks.jpg\033[0m')
 print('\033[0;37;42mDetected Done!\033[0m')

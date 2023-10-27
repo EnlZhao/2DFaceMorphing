@@ -7,24 +7,23 @@ def build_delaunay(image, points) :
     """
     Gets delaunay 2D segmentation and return a list with the the triangles' indexes
     """
-    rect = (0, 0, image.shape[1], image.shape[0])
-    subdiv = cv2.Subdiv2D(rect)
+    subdiv = cv2.Subdiv2D((0, 0, image.shape[1], image.shape[0]))
     for point in points :
         subdiv.insert(point)
 
-    triangleList = subdiv.getTriangleList()
-    triangles = []
-    for p in triangleList :
-        vertexes = [0, 0, 0]
+    triangle_list = subdiv.getTriangleList().astype(np.int32)
+    delaunay_triangles = []
+    for p in triangle_list :
+        vertexes_index = [0, 0, 0]
+
         for v in range(3) :
-            vv = v * 2
-            for i in range(len(points)) :
-                if p[vv] == points[i][0] and p[vv+1] == points[i][1] :
-                    vertexes[v] = i
+            vertex = (int(p[v * 2]), int(p[v * 2 + 1]))
+            if vertex in points :
+                vertexes_index[v] = points.index(vertex)
 
-        triangles.append(vertexes)
+        delaunay_triangles.append(vertexes_index)
 
-    return triangles
+    return delaunay_triangles
 
 def readPoints(src_path) :
     """
