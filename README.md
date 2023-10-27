@@ -17,7 +17,7 @@ This code generates a morphing effect between two faces.
 
 | Original | Modified |
 |:--------:|:--------:|
-| ![](example/harry.jpg) | ![](example/aligned-harry.png) |
+| ![](example/harry.jpg) | ![](example/harry-aligned.png) |
 
 - Find the max sharpness face in the image with multiple faces.
 
