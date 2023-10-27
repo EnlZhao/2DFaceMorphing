@@ -71,8 +71,8 @@ $ ./morphing.sh example/harry.jpg example/hermione.jpg 40 3000 1
 You can check the Delaunay and Voronoi diagrams generated for the example images by running the code `draw_delaunay.py`.
 
 ```bash
-$ python code/landmark_detector.py --image <img_path> # generate the landmarks file
-$ python code/draw_delaunay.py --image <img_path> # generate the Delaunay and Voronoi diagrams
+$ python my_code/landmark_detector.py --image <img_path> # generate the landmarks file
+$ python my_code/draw_delaunay.py --image <img_path> # generate the Delaunay and Voronoi diagrams
 ```
 
 ## References
