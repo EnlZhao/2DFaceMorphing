@@ -78,4 +78,5 @@ $ python my_code/draw_delaunay.py --image <img_path> # generate the Delaunay and
 ## References
 
 [Face Morph Using OpenCV — C++ / Python](https://www.learnopencv.com/face-morph-using-opencv-cpp-python/)
+[valillon](https://github.com/valillon/FaceMorph)
 
